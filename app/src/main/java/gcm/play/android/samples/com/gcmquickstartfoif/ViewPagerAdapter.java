@@ -14,7 +14,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     }
 
-    String[] tabNames = {"Notifications", "Stocks", "Portfolio"};
+    String[] tabNames = {"Watchers", "Stocks", "Portfolio"};
 
     @Override
     public Fragment getItem(int position) {
