@@ -72,7 +72,7 @@ public class CreateNewActivity extends AppCompatActivity {
                     jsonObj.put("symbol", ticker);
                     jsonObj.put("type", "above_price");
                     jsonObj.put("amount", 110);
-                    JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, "http://7ce87ca1.ngrok.com/api/watch/add", jsonObj, new Response.Listener<JSONObject>() {
+                    JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, "http://name-55690.onmodulus.net/", jsonObj, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             Intent intent_info = new Intent(CreateNewActivity.this,MainActivity.class);

@@ -1,7 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     android:id="@+id/mainLayout"
     android:orientation="vertical" tools:context=".MainActivity">
 
@@ -9,13 +8,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/registrationProgressBar" />
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:theme="@style/toolbarstyle"
+        android:background="?attr/colorPrimary"
+        />
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tablayout"
+        android:theme="@style/toolbarstyle"
+        android:layout_below="@id/toolbar"
+        android:background="?attr/colorPrimary"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tablayout"
+        android:id="@+id/viewpager"
+
+        />
+
+
     <ListView
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listView"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/tablayout"
         android:layout_centerHorizontal="true" />
+
     <android.support.design.widget.FloatingActionButton
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -30,5 +57,6 @@
         android:layout_alignParentEnd="true">
 
     </android.support.design.widget.FloatingActionButton>
+
 
 </RelativeLayout>
