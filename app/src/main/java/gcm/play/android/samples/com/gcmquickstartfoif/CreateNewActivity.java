@@ -89,7 +89,7 @@ public class CreateNewActivity extends AppCompatActivity {
             }
         });
 
-        /*
+
         RelativeLayout typePicker = (RelativeLayout) findViewById(R.id.typePicker);
         typePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +118,7 @@ public class CreateNewActivity extends AppCompatActivity {
                 }).show();
             }
         });
-        */
+
 
         View.OnClickListener buttonListener = new View.OnClickListener() {
             boolean clicked = false;

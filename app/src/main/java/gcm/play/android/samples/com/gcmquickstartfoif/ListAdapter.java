@@ -40,6 +40,9 @@ public class ListAdapter extends ArrayAdapter<JSONObject> {
             if (type.equals("above_price")) {
                 sublabel += "Above $";
             }
+            else if (type.equals("below_price")) {
+                sublabel += "Below $";
+            }
             sublabel += p.getDouble("amount");
             if (p.has("fulfilled")) {
                 sublabel += " - Happened " + DateUtils.getRelativeTimeSpanString(p.getLong("fulfilled"));
