@@ -25,12 +25,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -49,6 +53,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import gcm.play.android.samples.com.gcmquickstart.QuickstartPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView mInformationTextView;
     private Context _context;
     protected MyApp mMyApp;
+
+    private Toolbar toolbar;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +104,36 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+
+        tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
+
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.button);
         button.setOnClickListener(newListener);
 
@@ -110,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup root = (ViewGroup) findViewById(R.id.mainLayout);
         root.addView(bar);
         String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("motherfuckingtoken", ":(");
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, "http://575e786d.ngrok.com/api/watch/token/" + token, new JSONObject(), new Response.Listener<JSONObject>() {
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, "http://name-55690.onmodulus.net/api/watch/token/" + token, new JSONObject(), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println(response.toString());

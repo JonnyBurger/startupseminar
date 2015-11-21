@@ -29,6 +29,8 @@ import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 
+import gcm.play.android.samples.com.gcmquickstart.QuickstartPreferences;
+
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";

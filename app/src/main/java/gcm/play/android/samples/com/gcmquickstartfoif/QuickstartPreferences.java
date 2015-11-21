@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package gcm.play.android.samples.com.gcmquickstartfoif;
+package gcm.play.android.samples.com.gcmquickstart;
 
 public class QuickstartPreferences {
 
