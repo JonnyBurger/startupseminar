@@ -14,7 +14,7 @@ import org.w3c.dom.Text;
 import java.util.Date;
 import java.util.List;
 
-import gcm.play.android.samples.com.gcmquickstart.R;
+import gcm.play.android.samples.com.gcmquickstartfoif.R;
 
 public class ListAdapter extends ArrayAdapter<JSONObject> {
     public ListAdapter(Context context, int textViewResourceId) {

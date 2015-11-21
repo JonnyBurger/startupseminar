@@ -55,6 +55,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import gcm.play.android.samples.com.gcmquickstartfoif.R;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -149,7 +151,8 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup root = (ViewGroup) findViewById(R.id.mainLayout);
         root.addView(bar);
         String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("motherfuckingtoken", ":(");
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, "http://name-55690.onmodulus.net/" + token, new JSONObject(), new Response.Listener<JSONObject>() {
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, "http://name-55690.onmodulus.net/api/watch/token/" + token, new JSONObject(), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println(response.toString());

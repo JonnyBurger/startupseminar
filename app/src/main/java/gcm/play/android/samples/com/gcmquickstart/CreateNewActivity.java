@@ -27,9 +27,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import gcm.play.android.samples.com.gcmquickstartfoif.R;
+
 public class CreateNewActivity extends AppCompatActivity {
     private Context _context;
     public String ticker = "AAPL";
+    public float amount = 100.0f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         _context = this;
@@ -46,13 +49,40 @@ public class CreateNewActivity extends AppCompatActivity {
                 final EditText input = new EditText(_context);
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
                 builder.setView(input);
-
+                builder.setTitle("Pick symbol");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ticker = input.getText().toString();
                         TextView viewfromthe6 = (TextView) findViewById(R.id.selectedTicker);
                         viewfromthe6.setText(ticker);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.show();
+            }
+        });
+
+        RelativeLayout pricePicker = (RelativeLayout) findViewById(R.id.amountPicker);
+        pricePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                final EditText input = new EditText(_context);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                builder.setView(input);
+                builder.setTitle("Pick amount");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        amount = Float.parseFloat(input.getText().toString());
+                        TextView view = (TextView) findViewById(R.id.selectedAmount);
+                        view.setText("$" + input.getText().toString());
                     }
                 });
                 builder.show();
@@ -63,7 +93,6 @@ public class CreateNewActivity extends AppCompatActivity {
             boolean clicked = false;
             int numClicks = 0;
 
-
             @Override
             public void onClick(View v) {
                 JSONObject jsonObj = new JSONObject();
@@ -71,8 +100,10 @@ public class CreateNewActivity extends AppCompatActivity {
                     jsonObj.put("send_to", PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("motherfuckingtoken", ":("));
                     jsonObj.put("symbol", ticker);
                     jsonObj.put("type", "above_price");
-                    jsonObj.put("amount", 110);
-                    JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, "http://name-55690.onmodulus.net/", jsonObj, new Response.Listener<JSONObject>() {
+
+                    jsonObj.put("amount", amount);
+                    JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, "http://name-55690.onmodulus.net/api/watch/add", jsonObj, new Response.Listener<JSONObject>() {
+
                         @Override
                         public void onResponse(JSONObject response) {
                             Intent intent_info = new Intent(CreateNewActivity.this,MainActivity.class);
