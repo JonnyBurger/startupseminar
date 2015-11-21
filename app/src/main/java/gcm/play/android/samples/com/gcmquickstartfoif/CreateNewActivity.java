@@ -1,4 +1,4 @@
-package gcm.play.android.samples.com.gcmquickstart;
+package gcm.play.android.samples.com.gcmquickstartfoif;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,9 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.renderscript.ScriptGroup;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -25,14 +23,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import gcm.play.android.samples.com.gcmquickstartfoif.R;
 
 public class CreateNewActivity extends AppCompatActivity {
     private Context _context;
     public String ticker = "AAPL";
     public float amount = 100.0f;
+    public String type = "above_price";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         _context = this;
@@ -80,14 +76,49 @@ public class CreateNewActivity extends AppCompatActivity {
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        amount = Float.parseFloat(input.getText().toString());
-                        TextView view = (TextView) findViewById(R.id.selectedAmount);
-                        view.setText("$" + input.getText().toString());
+                        try {
+                            amount = Float.parseFloat(input.getText().toString());
+                            TextView view = (TextView) findViewById(R.id.selectedAmount);
+                            view.setText("$" + input.getText().toString());
+                        } catch (Exception e) {
+
+                        }
                     }
                 });
                 builder.show();
             }
         });
+
+        /*
+        RelativeLayout typePicker = (RelativeLayout) findViewById(R.id.typePicker);
+        typePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+                final String[] types = new String[]{"Above Price", "Below Price"};
+                builder.setSingleChoiceItems(types, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TextView tv = (TextView) findViewById(R.id.selectedType);
+                        String _type = types[which];
+                        if (_type.equals("Above Price")) {
+                            type = "above_price";
+                            tv.setText("Above price");
+                        }
+                        else if (_type.equals("Below Price")) {
+                            type = "below_price";
+                            tv.setText("Below price");
+                        }
+                    }
+                }).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+            }
+        });
+        */
 
         View.OnClickListener buttonListener = new View.OnClickListener() {
             boolean clicked = false;
@@ -99,9 +130,9 @@ public class CreateNewActivity extends AppCompatActivity {
                 try {
                     jsonObj.put("send_to", PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("motherfuckingtoken", ":("));
                     jsonObj.put("symbol", ticker);
-                    jsonObj.put("type", "above_price");
+                    jsonObj.put("type", type);
                     jsonObj.put("amount", amount);
-                    JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, "http://name-55690.onmodulus.net/api/watch/add", jsonObj, new Response.Listener<JSONObject>() {
+                    JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, "http://575e786d.ngrok.com/api/watch/add", jsonObj, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             Intent intent_info = new Intent(CreateNewActivity.this,MainActivity.class);

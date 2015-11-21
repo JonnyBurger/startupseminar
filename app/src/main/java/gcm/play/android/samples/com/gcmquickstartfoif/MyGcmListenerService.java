@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package gcm.play.android.samples.com.gcmquickstart;
+package gcm.play.android.samples.com.gcmquickstartfoif;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -28,8 +28,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
-
-import gcm.play.android.samples.com.gcmquickstartfoif.R;
 
 public class MyGcmListenerService extends GcmListenerService {
 

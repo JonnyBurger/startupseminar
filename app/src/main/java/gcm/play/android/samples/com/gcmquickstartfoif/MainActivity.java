@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package gcm.play.android.samples.com.gcmquickstart;
+package gcm.play.android.samples.com.gcmquickstartfoif;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -31,7 +31,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -50,9 +49,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import gcm.play.android.samples.com.gcmquickstartfoif.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -114,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup root = (ViewGroup) findViewById(R.id.mainLayout);
         root.addView(bar);
         String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("motherfuckingtoken", ":(");
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, "http://name-55690.onmodulus.net/api/watch/token/" + token, new JSONObject(), new Response.Listener<JSONObject>() {
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, "http://575e786d.ngrok.com/api/watch/token/" + token, new JSONObject(), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println(response.toString());

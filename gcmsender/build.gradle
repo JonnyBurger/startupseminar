@@ -1,6 +1,6 @@
 apply plugin: 'application'
 
-mainClassName = "gcm.play.android.samples.com.gcmsender.GcmSender"
+mainClassName = "gcm.play.android.samples.com.gcmsenderfoif.GcmSender"
 
 run {
     def params = []
